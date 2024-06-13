@@ -32,7 +32,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            form.save_m2m()
+            form.save_m2m() #подсказка
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
@@ -48,7 +48,7 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            form.save_m2m()
+            form.save_m2m() #подсказка пайчарма обьясните потом пж
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
@@ -64,7 +64,7 @@ def category_detail(request, pk):
     return render(request, 'blog/category_detail.html', {'category': category, 'posts': posts})
 
 def author_list(request):
-    authors = User.objects.filter(post__isnull=False).distinct()
+    authors = User.objects.filter(post__isnull=False).distinct() #пайчарм подсказал
     return render(request, 'blog/author_list.html', {'authors': authors})
 
 def author_detail(request, pk):
